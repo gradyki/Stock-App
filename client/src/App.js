@@ -20,14 +20,18 @@ function App() {
     console.log('inside useEffect' , apple)
   }, [])
   
-  console.log('outside useeffect', apple)
-
+  
+  console.log(`this is each open ${apple.data.map((date) => {
+  return date.open
+})}`)
+  
+  
   return (
     <div className="App">
       <Layout>
         <Switch>
           <Route path='/'>
-            <Home />
+            <Home apple={apple}/>
           </Route>
         </Switch>
    </Layout>
