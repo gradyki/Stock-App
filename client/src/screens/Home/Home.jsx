@@ -1,5 +1,14 @@
-import React from "react";
+import { useState } from "react";
+import Chart from "../../components/Chart/Chart";
 
 export default function Home(props) {
-  return <div>Home screen test</div>;
+  const { apple } = props;
+
+  console.log("home apple", apple);
+
+  return (
+    <div>
+      <Chart apple={apple} />
+    </div>
+  );
 }
