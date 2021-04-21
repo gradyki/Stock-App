@@ -1,8 +1,31 @@
+import "./Home.css";
 import { useState } from "react";
 import Chart from "../../components/Chart/Chart";
 
 export default function Home(props) {
   const { apple } = props;
+  const [chartDays, setChartDays] = useState(7);
 
-  return <div>{apple && <Chart apple={apple} />}</div>;
+  const setSeven = () => {
+    setChartDays(7);
+  };
+
+  const setThirty = () => {
+    setChartDays(30);
+  };
+
+  const setHundred = () => {
+    setChartDays(100);
+  };
+
+  return (
+    <div>
+      {apple && <Chart apple={apple} chartDays={chartDays} />}
+      <div className="chart-buttons">
+        <p onClick={setSeven}>7 days</p>
+        <p onClick={setThirty}>30 days</p>
+        <p onClick={setHundred}>100 days</p>
+      </div>
+    </div>
+  );
 }

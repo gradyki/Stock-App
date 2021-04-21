@@ -3,10 +3,10 @@ import { Line } from "react-chartjs-2";
 import { dateConverter } from "../../utils/index";
 
 export default function Chart(props) {
-  const { apple } = props;
+  const { apple, chartDays } = props;
 
   let line = [...apple.data].reverse();
-  let test = [...apple.data].slice(0, 30).reverse();
+  let test = [...apple.data].slice(0, chartDays).reverse();
 
   console.log("test", test);
 
