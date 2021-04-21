@@ -1,20 +1,27 @@
 import "./Chart.css";
 import { Line } from "react-chartjs-2";
+import { dateConverter } from "../../utils/index";
 
 export default function Chart(props) {
   const { apple } = props;
 
-  console.log("line", apple);
-  const dates = apple.data.map((day) => {
-    return day.date;
+  let line = [...apple.data].reverse();
+  let test = [...apple.data].slice(0, 30).reverse();
+
+  console.log("test", test);
+
+  console.log("line", line);
+
+  const dates = test.map((day) => {
+    return dateConverter(day.date);
   });
 
-  const closes = apple.data.map((day) => {
+  const closes = test.map((day) => {
     return day.close;
   });
 
-  console.log("these are the dates", dates);
-  console.log("closes", closes);
+  // console.log("these are the dates", dates);
+  // console.log("closes", closes);
 
   const data = {
     labels: dates,
@@ -34,7 +41,7 @@ export default function Chart(props) {
       yAxes: [
         {
           ticks: {
-            beginAtZero: true,
+            beginAtZero: false,
           },
         },
       ],
