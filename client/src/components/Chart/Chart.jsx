@@ -3,20 +3,31 @@ import { Line } from "react-chartjs-2";
 import { dateConverter } from "../../utils/index";
 
 export default function Chart(props) {
-  const { apple, chartDays } = props;
+  const { apple, chartDays, quote } = props;
 
-  let line = [...apple.data].reverse();
-  let test = [...apple.data].slice(0, chartDays).reverse();
+  console.log("quote", quote);
+  console.log("apple", apple);
 
-  console.log("test", test);
+  let microsoftLine = [...quote.data].slice(0, chartDays).reverse();
+  let appleLine = [...apple.data].slice(0, chartDays).reverse();
 
-  console.log("line", line);
+  // console.log("test", test);
 
-  const dates = test.map((day) => {
+  // console.log("line", line);
+
+  const msDates = microsoftLine.map((day) => {
     return dateConverter(day.date);
   });
 
-  const closes = test.map((day) => {
+  const msCloses = microsoftLine.map((day) => {
+    return day.close;
+  });
+
+  const aapleDates = appleLine.map((day) => {
+    return dateConverter(day.date);
+  });
+
+  const appleCloses = appleLine.map((day) => {
     return day.close;
   });
 
@@ -24,14 +35,21 @@ export default function Chart(props) {
   // console.log("closes", closes);
 
   const data = {
-    labels: dates,
+    labels: msDates,
     datasets: [
       {
-        label: "Closing price",
-        data: closes,
+        label: `${quote.data[0].symbol} closing prices`,
+        data: msCloses,
         fill: false,
         backgroundColor: "rgb(255, 99, 132)",
         borderColor: "rgba(255, 99, 132, 0.2)",
+      },
+      {
+        label: `${apple.data[0].symbol} closing prices`,
+        data: appleCloses,
+        fill: false,
+        backgroundColor: "rgb(0, 255, 255)",
+        borderColor: "rgb(0, 255, 255, 0.2)",
       },
     ],
   };
@@ -42,6 +60,8 @@ export default function Chart(props) {
         {
           ticks: {
             beginAtZero: false,
+            responsive: true,
+            maintainAspectRatio: true,
           },
         },
       ],
@@ -53,7 +73,6 @@ export default function Chart(props) {
   // });
   return (
     <div className="chart-container">
-      line test
       <Line data={data} options={options} />
     </div>
   );
