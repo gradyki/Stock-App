@@ -72,7 +72,7 @@ export default function Chart(props) {
   //   console.log(day.close);
   // });
   return (
-    <div className="chart-container">
+    <div className="chart">
       <Line data={data} options={options} />
     </div>
   );

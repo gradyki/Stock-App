@@ -1,3 +1,14 @@
+.above-chart {
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+  margin: 5vh 10vw 5vh 10vw;
+}
+
+.chart-container {
+  margin: 0 25vw 0 25vw;
+}
+
 .chart-buttons {
   display: flex;
   justify-content: center;
