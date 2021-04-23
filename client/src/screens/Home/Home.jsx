@@ -3,9 +3,10 @@ import { useState } from "react";
 import Chart from "../../components/Chart/Chart";
 
 export default function Home(props) {
-  const { apple, microsoft } = props;
+  const { apple, microsoft, appleDay } = props;
   const [chartDays, setChartDays] = useState(30);
 
+  console.log("appleday", appleDay);
   const setSeven = () => {
     setChartDays(7);
   };

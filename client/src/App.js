@@ -5,14 +5,15 @@ import Layout from './layout/Layout'
 import Home from './screens/Home/Home'
 import { eodUrl, key2} from './services/index'
 import axios from 'axios'
+import {dateFormat} from './services/utils'
 
 
 function App() {
   const [apple, setApple] = useState('AAPL')
   const [microsoft, setMicrosoft] = useState(null)
-  const [quote, setQuote] = useState(null)
-  const [date, setDate] = useState('2021-04-21')
   const [appleDay, setAppleDay] = useState(null)
+
+  
   
   
   
@@ -24,8 +25,8 @@ function App() {
       setApple(respApple.data)
       const respMicrosoft = await axios.get(`${eodUrl}MSFT`)
       setMicrosoft(respMicrosoft.data)
-      const respAppleDay = await axios.get(`https://api.polygon.io/v1/open-close/AAPL/${date}?unadjusted=true&apiKey=${key2}`)
-      setAppleDay(respAppleDay)
+      const respAppleDay = await axios.get(`https://api.polygon.io/v1/open-close/AAPL/${yesterday}?unadjusted=true&apiKey=${key2}`)
+      setAppleDay(respAppleDay.data)
 
   
     }
@@ -34,6 +35,17 @@ function App() {
   
   
   
+  let todaysDate = new Date()
+  let day = todaysDate.getDate()
+  let year = todaysDate.getFullYear()
+  let month = todaysDate.getMonth() +1
+
+  let toConvert = `${year}-${month<10 ?`0${month}`: `${month}`}-${day<10?`0${day}`: `${day}`}`
+  let yesterday = dateFormat(toConvert)
+
+  console.log('toconvert', toConvert)
+  
+  console.log('date', yesterday)
   
   
   return (
@@ -41,7 +53,7 @@ function App() {
       <Layout>
         <Switch>
           <Route path='/'>
-            <Home apple={apple} microsoft={microsoft}/>
+            <Home apple={apple} microsoft={microsoft} appleDay={appleDay}/>
           </Route>
         </Switch>
    </Layout>
