@@ -9,7 +9,7 @@ import axios from 'axios'
 
 function App() {
   const [apple, setApple] = useState('AAPL')
-  const [microsoft, setMicrosoft] = useState('MSFT')
+  const [microsoft, setMicrosoft] = useState(null)
   const [quote, setQuote] = useState(null)
   const [date, setDate] = useState('2021-04-21')
   const [appleDay, setAppleDay] = useState(null)
@@ -22,8 +22,8 @@ function App() {
     const getAppleEod = async () => {
       const respApple = await axios.get(`${eodUrl}${apple}`)
       setApple(respApple.data)
-      const respMicrosoft = await axios.get(`${eodUrl}${microsoft}`)
-      setQuote(respMicrosoft.data)
+      const respMicrosoft = await axios.get(`${eodUrl}MSFT`)
+      setMicrosoft(respMicrosoft.data)
       const respAppleDay = await axios.get(`https://api.polygon.io/v1/open-close/AAPL/${date}?unadjusted=true&apiKey=${key2}`)
       setAppleDay(respAppleDay)
 
@@ -41,7 +41,7 @@ function App() {
       <Layout>
         <Switch>
           <Route path='/'>
-            <Home apple={apple} quote={quote}/>
+            <Home apple={apple} microsoft={microsoft}/>
           </Route>
         </Switch>
    </Layout>

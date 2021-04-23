@@ -3,7 +3,7 @@ import { useState } from "react";
 import Chart from "../../components/Chart/Chart";
 
 export default function Home(props) {
-  const { apple, quote } = props;
+  const { apple, microsoft } = props;
   const [chartDays, setChartDays] = useState(30);
 
   const setSeven = () => {
@@ -20,7 +20,9 @@ export default function Home(props) {
 
   return (
     <div>
-      {quote && <Chart apple={apple} chartDays={chartDays} quote={quote} />}
+      {microsoft && (
+        <Chart apple={apple} chartDays={chartDays} microsoft={microsoft} />
+      )}
       <div className="chart-buttons">
         <p onClick={setSeven}>7 days</p>
         <p onClick={setThirty}>30 days</p>

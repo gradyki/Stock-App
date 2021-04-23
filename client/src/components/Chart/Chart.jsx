@@ -3,12 +3,12 @@ import { Line } from "react-chartjs-2";
 import { dateConverter } from "../../utils/index";
 
 export default function Chart(props) {
-  const { apple, chartDays, quote } = props;
+  const { apple, chartDays, microsoft } = props;
 
-  console.log("quote", quote);
+  console.log("microsoft", microsoft);
   console.log("apple", apple);
 
-  let microsoftLine = [...quote.data].slice(0, chartDays).reverse();
+  let microsoftLine = [...microsoft.data].slice(0, chartDays).reverse();
   let appleLine = [...apple.data].slice(0, chartDays).reverse();
 
   // console.log("test", test);
@@ -38,7 +38,7 @@ export default function Chart(props) {
     labels: msDates,
     datasets: [
       {
-        label: `${quote.data[0].symbol} closing prices`,
+        label: `${microsoft.data[0].symbol} closing prices`,
         data: msCloses,
         fill: false,
         backgroundColor: "rgb(255, 99, 132)",
