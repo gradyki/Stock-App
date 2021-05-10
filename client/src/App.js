@@ -12,6 +12,7 @@ function App() {
   const [apple, setApple] = useState('AAPL')
   const [microsoft, setMicrosoft] = useState(null)
   const [appleDay, setAppleDay] = useState(null)
+  const [microsoftDay, setMicrosoftDay]= useState(null)
 
   
   
@@ -27,6 +28,8 @@ function App() {
       setMicrosoft(respMicrosoft.data)
       const respAppleDay = await axios.get(`${latestUrl}AAPL`)
       setAppleDay(respAppleDay.data)
+      const respMicrosoftDay = await axios.get(`${latestUrl}MSFT`)
+      setMicrosoftDay(respMicrosoftDay.data)
 
   
     }
@@ -51,11 +54,11 @@ function App() {
   return (
     
     < div className="App" >
-      {appleDay &&
+      {appleDay && microsoftDay &&
         <Layout>
           <Switch>
             <Route path='/'>
-              <Home apple={apple} microsoft={microsoft} appleDay={appleDay} />
+            <Home apple={apple} microsoft={microsoft} appleDay={appleDay} microsoftDay={microsoftDay}/>
             </Route>
           </Switch>
       </Layout>
