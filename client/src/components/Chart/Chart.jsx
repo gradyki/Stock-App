@@ -5,8 +5,8 @@ import { dateConverter } from "../../utils/index";
 export default function Chart(props) {
   const { apple, chartDays, microsoft } = props;
 
-  console.log("microsoft", microsoft);
-  console.log("apple", apple);
+  // console.log("microsoft", microsoft);
+  // console.log("apple", apple);
 
   let microsoftLine = [...microsoft.data].slice(0, chartDays).reverse();
   let appleLine = [...apple.data].slice(0, chartDays).reverse();
@@ -38,14 +38,14 @@ export default function Chart(props) {
     labels: msDates,
     datasets: [
       {
-        label: `${microsoft.data[0].symbol} closing prices`,
+        label: `${microsoft.data[0].symbol}`,
         data: msCloses,
         fill: false,
         backgroundColor: "rgb(255, 99, 132)",
         borderColor: "rgba(255, 99, 132, 0.2)",
       },
       {
-        label: `${apple.data[0].symbol} closing prices`,
+        label: `${apple.data[0].symbol}`,
         data: appleCloses,
         fill: false,
         backgroundColor: "rgb(0, 255, 255)",

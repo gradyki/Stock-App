@@ -3,13 +3,33 @@ import { useState } from "react";
 import Chart from "../../components/Chart/Chart";
 
 export default function Home(props) {
-  const { apple, microsoft, appleDay, microsoftDay } = props;
+  const { apple, microsoft, appleDay, microsoftDay, ibm } = props;
   const [chartDays, setChartDays] = useState(30);
+
+  console.log("ibm", ibm);
+
+  const ibmDaily = ibm["Time Series (Daily)"];
+  console.log("ibm daily", ibmDaily);
+
+  const ibmDates = Object.keys(ibmDaily);
+  console.log("ibm dates", ibmDates);
+
+  const getLine = (stock, dates) => {
+    let lineNumbers = [];
+    for (let i = 0; i < dates.length; i++) {
+      lineNumbers.push(stock[`${dates[i]}`]);
+    }
+    return lineNumbers;
+  };
+
+  console.log("testing", getLine(ibmDaily, ibmDates));
 
   let appleInfo = appleDay.data[0];
   let microsoftInfo = microsoftDay.data[0];
 
-  console.log("appleday", appleDay);
+  // console.log("appleInfo", appleInfo);
+
+  // console.log("appleday", appleDay);
   const setSeven = () => {
     setChartDays(7);
   };

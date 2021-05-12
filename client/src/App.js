@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import {useEffect, useState} from 'react'
 import Layout from './layout/Layout'
 import Home from './screens/Home/Home'
-import { eodUrl, latestUrl} from './services/index'
+import { eodUrl, latestUrl, dailyCloses} from './services/index'
 import axios from 'axios'
 import {dateFormat} from './services/utils'
 
@@ -12,7 +12,8 @@ function App() {
   const [apple, setApple] = useState('AAPL')
   const [microsoft, setMicrosoft] = useState(null)
   const [appleDay, setAppleDay] = useState(null)
-  const [microsoftDay, setMicrosoftDay]= useState(null)
+  const [microsoftDay, setMicrosoftDay] = useState(null)
+  const [ibm, setIbm]= useState(null)
 
   
   
@@ -30,6 +31,8 @@ function App() {
       setAppleDay(respAppleDay.data)
       const respMicrosoftDay = await axios.get(`${latestUrl}MSFT`)
       setMicrosoftDay(respMicrosoftDay.data)
+      const respIbm = await axios.get(`${dailyCloses}`)
+      setIbm(respIbm.data)
 
   
     }
@@ -54,11 +57,11 @@ function App() {
   return (
     
     < div className="App" >
-      {appleDay && microsoftDay &&
+      {appleDay && microsoftDay && ibm &&
         <Layout>
           <Switch>
             <Route path='/'>
-            <Home apple={apple} microsoft={microsoft} appleDay={appleDay} microsoftDay={microsoftDay}/>
+            <Home apple={apple} microsoft={microsoft} appleDay={appleDay} microsoftDay={microsoftDay} ibm={ibm}/>
             </Route>
           </Switch>
       </Layout>
