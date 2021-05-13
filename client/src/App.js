@@ -1,8 +1,10 @@
 import './App.css';
+import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import {useEffect, useState} from 'react'
 import Layout from './layout/Layout'
 import Home from './screens/Home/Home'
+import Detail from './screens/Detail/Detail'
 import { eodUrl, latestUrl, dailyCloses} from './services/index'
 import axios from 'axios'
 import {dateFormat} from './services/utils'
@@ -60,9 +62,12 @@ function App() {
       {appleDay && microsoftDay && ibm &&
         <Layout>
           <Switch>
-            <Route path='/'>
+            <Route exact path='/'>
             <Home apple={apple} microsoft={microsoft} appleDay={appleDay} microsoftDay={microsoftDay} ibm={ibm}/>
-            </Route>
+          </Route>
+          <Route path='/test'>
+            <Detail />
+          </Route>
           </Switch>
       </Layout>
       }
