@@ -22,7 +22,17 @@ export default function Home(props) {
     return lineNumbers;
   };
 
-  console.log("testing", getLine(ibmDaily, ibmDates));
+  let searchedLine = getLine(ibmDaily, ibmDates);
+
+  console.log("searched line", searchedLine);
+
+  let dataPoints = [];
+
+  Object.entries(searchedLine).forEach(([key, value]) => {
+    return dataPoints.push(value["4. close"]);
+  });
+
+  console.log("dataPoints", dataPoints);
 
   let appleInfo = appleDay.data[0];
   let microsoftInfo = microsoftDay.data[0];

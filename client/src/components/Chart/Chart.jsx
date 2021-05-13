@@ -32,7 +32,7 @@ export default function Chart(props) {
   });
 
   // console.log("these are the dates", dates);
-  // console.log("closes", closes);
+  // console.log("closes", msCloses);
 
   const data = {
     labels: msDates,
