@@ -7,7 +7,7 @@ export default function Search(prop) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    useHistory.push(`/detail`);
+    useHistory.push(`/test`);
   };
 
   return <div>search test</div>;
