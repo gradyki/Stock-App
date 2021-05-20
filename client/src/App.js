@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import {useEffect, useState} from 'react'
-import Layout from './layout/Layout'
+import Layout from './Layout/Layout'
 import Home from './screens/Home/Home'
 import Detail from './screens/Detail/Detail'
 import { eodUrl, latestUrl, dailyCloses} from './services/index'
