@@ -1,5 +1,6 @@
 import "./Home.css";
 import { useState } from "react";
+import Nav from '../../components/Nav/Nav'
 import Chart from "../../components/Chart/Chart";
 
 export default function Home(props) {
@@ -54,6 +55,7 @@ export default function Home(props) {
 
   return (
     <div className="home-container">
+      <Nav />
       <div className="above-chart">
         <div className="apple-info">
           <h5>Apple</h5>
